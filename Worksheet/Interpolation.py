@@ -1,0 +1,20 @@
+import numpy as np
+from scipy.interpolate import interp1d
+x = np.linspace(0, 10, 10)
+y = np.sin(x)
+interp_linear = interp1d(x, y, kind = "linear")
+x_new = np.linspace(0, 10, 100)
+y_new_linear = interp_linear(x_new)
+interp_cubic = interp1d(x, y, kind = "cubic")
+y_new_cubic = interp_cubic(x_new)
+import matplotlib.pyplot as plt
+plt.figure(figsize=(10, 6))
+plt.plot(x, y, 'bo', label = 'Original data')
+plt.plot(x_new, y_new_linear, 'r-', label = 'Linear Interpolation')
+plt.plot(x_new, y_new_cubic, 'g--', label = 'Cubic Interpolation')
+plt.legend()
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Interpolation using NumPy and SciPy')
+plt.grid(True)   
+plt.show()
